@@ -1,6 +1,10 @@
 import { Page, expect } from '@playwright/test';
 import { generateRandomEmail } from './utils';
 
+/**
+ * Registers a new user with a random email address.
+ * Returns the generated email for further usage.
+ */
 export async function register(page: Page) {
   const email = generateRandomEmail();
 
@@ -20,12 +24,15 @@ export async function register(page: Page) {
   return email; 
 }
 
-export async function login(page: Page, email: string) {
+/**
+ * Logs in an existing user with provided email and password.
+ */
+export async function login(page: Page, email: string, password: string) {
   await page.goto('https://demowebshop.tricentis.com/');
   await page.click('a[href="/login"]');
 
   await page.locator('#Email').fill(email);
-  await page.locator('#Password').fill('Test1234!');
+  await page.locator('#Password').fill(password);
   await page.click('input[value="Log in"]');
 
   await expect(page.locator('a[href="/logout"]')).toBeVisible();

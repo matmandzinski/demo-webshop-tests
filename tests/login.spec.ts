@@ -1,14 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { login } from '../helpers/auth';
+import { testUser } from '../helpers/testUser';
 
-test('Login existing user on Demo Webshop', async ({ page }) => {
-  await page.goto('https://demowebshop.tricentis.com/');
-  
-  await page.click('a[href="/login"]');
-
-  await page.locator('#Email').fill('testuser256@mailinator.com');
-  await page.locator('#Password').fill('Test1234!');
-
-  await page.click('input[value="Log in"]');
-
-  await expect(page.locator('a[href="/logout"]')).toBeVisible();
+/**
+ * Test for logging in with a predefined test user.
+ */
+test('Login existing test user', async ({ page }) => {
+  await login(page, testUser.email, testUser.password);
 });
