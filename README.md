@@ -68,4 +68,4 @@ npx playwright test --ui
 ## Author
 
 Mateusz Mandziński  
-LinkedIn: https://www.linkedin.com/in/matmandzinski/
+
